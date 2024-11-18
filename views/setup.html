@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Upload and Gallery</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 20px; }
+    .upload-form { max-width: 400px; margin: auto; }
+    .gallery { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+    .gallery-item { width: 150px; text-align: center; }
+    .gallery-item img { width: 100%; border-radius: 8px; }
+  </style>
+</head>
+<body>
+
+  <h1>Upload Image</h1>
+  <form class="upload-form" id="uploadForm" enctype="multipart/form-data">
+    
+    <input type="text" id="description" name="description" required><br><br>
+    <input type="text" id="name" name="name" required><br><br>
+    <input type="number" id="age" name="age" required><br><br>
+    
+    <input type="file" id="file" name="file" accept="image/*" required><br><br>
+    <button type="submit">Upload</button>
+  </form>
+
+  <h2>Gallery</h2>
+  <div class="gallery" id="gallery"></div>
+
+  <script>
+    const form = document.getElementById('uploadForm');
+    const gallery = document.getElementById('gallery');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const formData = new FormData();
+      formData.append('description', document.getElementById('description').value);
+      formData.append('name', document.getElementById('name').value);
+      formData.append('age', document.getElementById('age').value);
+      formData.append('file', document.getElementById('file').files[0]);
+
+      const response = await fetch('http://localhost:5000/api/gallery/upload', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (response.ok) {
+        alert('Image uploaded successfully');
+        loadGallery();
+      } else {
+        alert('Failed to upload image');
+      }
+    });
+
+    async function loadGallery() {
+      const response = await fetch('http://localhost:5000/api/gallery');
+      const images = await response.json();
+
+      gallery.innerHTML = images.map(image => `
+        <div class="gallery-item">
+          <img src="http://localhost:5000/uploads/${image.filePath}" alt="Image">
+          <p>${image.description}</p>
+        </div>
+      `).join('');
+    }
+
+    document.addEventListener('DOMContentLoaded', loadGallery);
+  </script>
+
+</body>
+</html>

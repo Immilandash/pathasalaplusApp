@@ -1,0 +1,263 @@
+/* Basic Styles */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f6f8;
+  margin: 0;
+  padding: 0;
+  overflow-x:hidden ;
+}
+
+
+/* Sidebar */
+.sidebar {
+  width: 250px;
+  background-color: #235158;
+  color: white;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding-top: 30px;
+  transition: width 0.3s;
+  overflow-y: scroll;
+}
+.sidebar::-webkit-scrollbar {
+  width: 3px;
+  border-radius: 50px;
+}
+.sidebar::-webkit-scrollbar-track {
+  background: #222;
+}
+.sidebar::-webkit-scrollbar-thumb {
+  background: #fff;
+}
+.sidebar::-webkit-scrollbar-thumb:hover {
+  background: blue;
+}
+
+.sidebar h2 {
+  text-align: center;
+  position: absolute;
+  top: 0;
+  left: auto;
+}
+
+.sidebar ul {
+  margin-top: 30px;
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  padding: 10px;
+  border-bottom: 0.5px solid rgba(255, 255, 255, 0.278);
+}
+
+.sidebar ul li a {
+  color: white;
+  text-decoration: none;
+}
+
+/* Main Content */
+.main-content {
+  margin-left: 250px;
+  padding: 20px;
+  /* background: linear-gradient(135deg, #22222245, #183b3f93, #222); */
+}
+
+.navbar {
+  background-image: linear-gradient(to right, #235158, #222);
+  color: white;
+  padding: 15px;
+}
+
+.content {
+  background-color: #ffffffa2;
+  padding: 20px;
+  margin-top: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Form Styling */
+.edit-student-form{ 
+  width: 90%;
+  height: 90%;
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.164);
+  padding: 30px;
+  margin: 20px auto;
+  border-radius: 20px 0 20px ;
+}
+form {
+  display: flex;
+  flex-direction: column;
+}
+input {
+  padding: 10px;
+  margin: 5px 0;
+}
+
+button {
+  padding: 10px;
+  background: linear-gradient(135deg, #222, #183b3f, #222);
+  color: white;
+  border: none;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* Student Cards */
+.student-cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: start;
+}
+
+.student-card {
+  width: 200px;
+  padding: 20px;
+  margin: 15px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s;
+}
+.single-student-card{
+  width: 90%;
+}
+.student-card:hover {
+  transform: scale(1.05);
+}
+
+.student-card h3 {
+  font-size: 1.2em;
+  margin: 0;
+}
+
+.student-card p {
+  font-size: 0.9em;
+  color: #555;
+}
+
+
+/* Profile Picture Styling */
+.student-card .profile-pic {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 15px;
+  overflow: hidden;
+}
+.student-card .profile-pic img, .single-student-card .single-profile-pic img{
+  width: 100%;
+  height: 100%;
+}
+
+.single-student-card .single-profile-pic{
+  width: 30vw;
+  height: 30vw;
+}
+
+.view-details{
+  cursor:pointer; 
+  background: linear-gradient(135deg, #222, #183b3f, #222);
+
+  padding:5px 10px;
+  border-radius: 10px 0 10px 0;
+  color: white;
+}
+
+#campus-filter {
+  margin: 10px 0;
+  padding: 5px;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  body{
+    overflow-x: hidden;
+  }
+  /* Make sidebar collapsible on small screens */
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+    padding: 10px;
+  }
+
+  .sidebar h2 {
+    font-size: 1.5em;
+  }
+
+  .main-content {
+    margin-left: 0;
+    padding: 10px;
+  }
+
+  .navbar {
+    padding: 10px;
+  }
+
+  .content {
+    padding: 15px;
+    margin-top: 10px;
+  }
+
+  /* Adjust form input and button sizes */
+  form {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  input,
+  button {
+    padding: 8px;
+    font-size: 1em;
+  }
+
+  /* Adjust student cards layout */
+  .student-cards-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .student-card {
+    width: 90%;
+    margin: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Further adjustments for very small screens */
+  .sidebar {
+    width: 100%;
+    padding-top: 15px;
+  }
+
+  .sidebar h2 {
+    font-size: 1.2em;
+  }
+
+  .main-content {
+    padding: 5px;
+  }
+
+  .navbar {
+    padding: 8px;
+  }
+
+  .content {
+    padding: 10px;
+  }
+
+  /* Adjust student cards for small screens */
+  .student-card {
+    width: 100%;
+    padding: 15px;
+    font-size: 0.9em;
+  }
+}
