@@ -3,25 +3,36 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Super Admin Login</title>
-  <link rel="stylesheet" href="styles.css">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-  <div class="login-container">
-    <h1>Super Admin Login</h1>
-    <form id="login-form">
-      <div>
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required>
-      </div>
-      <div>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
-      </div>
-      <button type="submit">Login</button>
-    </form>
+  <div id="sidebar" class="sidebar">
+    <h2>Dashboard</h2>
+    <ul>
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="#">Students</a></li>
+      <li><a href="addstudent.html">Add Student</a></li>
+    </ul>
   </div>
 
-  <script src="js/adminlogin.js"></script>
+  <div class="main-content">
+    <nav class="navbar">
+      <h1>View studetns here ❕ </h1>
+    </nav>
+    <select id="campus-filter" onchange="filterStudents()">
+      <option value="all">All Campuses</option>
+      <option value="1">Campus 1</option>
+      <option value="2">Campus 2</option>
+      <option value="3">Campus 3</option>
+    </select>
+    <div id="student-cards" class="student-cards-container">
+        <!-- Student cards will be inserted here dynamically -->
+      </div>
+
+  </div>
+
+  <script src="../js/students.js"></script>
+  <script src="../js/sidebar.js"></script>
 </body>
 </html>
