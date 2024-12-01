@@ -3,71 +3,45 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Image Upload and Gallery</title>
-  <style>
-    body { font-family: Arial, sans-serif; margin: 0; padding: 20px; }
-    .upload-form { max-width: 400px; margin: auto; }
-    .gallery { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
-    .gallery-item { width: 150px; text-align: center; }
-    .gallery-item img { width: 100%; border-radius: 8px; }
-  </style>
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
+  <div id="sidebar" class="sidebar">
+    <h2>Dashboard</h2>
+    <ul>
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="#">Students</a></li>
+      <li><a href="addstudent.html">Add Student</a></li>
+    </ul>
+  </div>
 
-  <h1>Upload Image</h1>
-  <form class="upload-form" id="uploadForm" enctype="multipart/form-data">
+  <div class="main-content">
+    <nav class="navbar">
+      <h1>View studetns here ❕ </h1>
+    </nav>
+   
+    <form id="setup-form" enctype="multipart/form-data">
+      <input type="text" name="brandName" placeholder="Brand Name" />
+      <br> Logo <input type="file" name="logo" />
+     <br> Color Theme <br> <input type="color" name="themeColor" />
+     <br> <input type="number" name="annualTargetStudents" placeholder="Target Students" />
+      <input type="number" name="annualTargetIncome" placeholder="Target Income" />
+      <input type="text" name="twitter" placeholder="Twitter" />
+      <input type="text" name="instagram" placeholder="Instagram" />
+      <input type="text" name="youtube" placeholder="YouTube" />
+      <input type="text" name="whatsappNumber" placeholder="WhatsApp Number" />
+      <input type="text" name="landline" placeholder="Landline" />
+      <input type="email" name="email" placeholder="Email" />
+      <textarea name="aboutUs" placeholder="About Us"></textarea>
+     Images <input type="file" name="sliders" multiple />
+      <button type="submit">Save Setup</button>
+    </form>
     
-    <input type="text" id="description" name="description" required><br><br>
-    <input type="text" id="name" name="name" required><br><br>
-    <input type="number" id="age" name="age" required><br><br>
     
-    <input type="file" id="file" name="file" accept="image/*" required><br><br>
-    <button type="submit">Upload</button>
-  </form>
+  </div>
 
-  <h2>Gallery</h2>
-  <div class="gallery" id="gallery"></div>
-
-  <script>
-    const form = document.getElementById('uploadForm');
-    const gallery = document.getElementById('gallery');
-
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-
-      const formData = new FormData();
-      formData.append('description', document.getElementById('description').value);
-      formData.append('name', document.getElementById('name').value);
-      formData.append('age', document.getElementById('age').value);
-      formData.append('file', document.getElementById('file').files[0]);
-
-      const response = await fetch('http://localhost:5000/api/gallery/upload', {
-        method: 'POST',
-        body: formData,
-      });
-
-      if (response.ok) {
-        alert('Image uploaded successfully');
-        loadGallery();
-      } else {
-        alert('Failed to upload image');
-      }
-    });
-
-    async function loadGallery() {
-      const response = await fetch('http://localhost:5000/api/gallery');
-      const images = await response.json();
-
-      gallery.innerHTML = images.map(image => `
-        <div class="gallery-item">
-          <img src="http://localhost:5000/uploads/${image.filePath}" alt="Image">
-          <p>${image.description}</p>
-        </div>
-      `).join('');
-    }
-
-    document.addEventListener('DOMContentLoaded', loadGallery);
-  </script>
-
+  <script src="../js/sidebar.js"></script>
+  <script src="../js/setup.js"></script>
 </body>
 </html>

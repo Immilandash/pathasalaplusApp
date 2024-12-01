@@ -51,6 +51,11 @@ body {
 .sidebar ul li {
   padding: 10px;
   border-bottom: 0.5px solid rgba(255, 255, 255, 0.278);
+  cursor: pointer;
+}
+.sidebar ul li:hover{
+  background-image: linear-gradient(to right, #235158, #222);
+
 }
 
 .sidebar ul li a {
