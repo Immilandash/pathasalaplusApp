@@ -4,24 +4,32 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin Login</title>
-  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/admin.css">
 </head>
 <body>
+  <div class="btns">
+    <button class="authButton loginbtn">Login</button>
+  <button class="authButton regbtn">SignUp</button>
+  </div>
   <div class="form-container">
-    <h1>Admin Login</h1>
+    <div class="admin-login-box">
+      <h1>Admin Login</h1>
     <form id="admin-login-form">
-      <input type="email" id="admin-email" placeholder="Email" required>
-      <input type="password" id="admin-password" placeholder="Password" required>
+      <input type="email" id="admin-email" placeholder="Email" required> <br>
+      <input type="password" id="admin-password" placeholder="Password" required> <br>
       <button type="submit">Login</button>
     </form>
+    </div>
 
-    <h1>Admin Registration</h1>
+    <div class="admin-registration-box">
+      <h1>Admin Registration</h1>
     <form id="admin-register-form">
-      <input type="text" id="admin-name" placeholder="Name" required>
-      <input type="email" id="register-email" placeholder="Email" required>
-      <input type="password" id="register-password" placeholder="Password" required>
+      <input type="text" id="admin-name" placeholder="Name" required> <br>
+      <input type="email" id="register-email" placeholder="Email" required> <br>
+      <input type="password" id="register-password" placeholder="Password" required> <br>
       <button type="submit">Register</button>
     </form>
+    </div>
   </div>
 
   <script src="../js/admin.js"></script>

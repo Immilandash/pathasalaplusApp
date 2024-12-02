@@ -46,3 +46,10 @@ loginForm.addEventListener('submit', async (e) => {
     alert('Login failed. Please try again.');
   }
 });
+
+
+const loginBox = document.querySelector('.admin-login-box');
+const regbox = document.querySelector('.admin-registration-box');
+
+loginBox.style.background = 'red'
+regbox.style.background = 'grey'
