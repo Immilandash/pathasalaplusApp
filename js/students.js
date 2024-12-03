@@ -22,7 +22,7 @@ function displayStudents(students) {
       <div class="profile-pic">
         <img src="http://localhost:5000/uploads/${student.profilePicture}" alt="Image" />
       </div>
-      <h3>${student.name}</h3>    
+      <h3 style= "text-transform: uppercase">${student.name}</h3>    
       <p>Seat Number: ${student.seatNumber}</p>
       <p>Campus Number: ${student.campusNumber}</p>
       <p>WhatsApp: ${student.whatsappNumber}</p>
@@ -77,7 +77,7 @@ async function singlestudent() {
       <div class="single-profile-pic">
         <img src="http://localhost:5000/uploads/${student.profilePicture}" alt="Image" />
       </div>
-      <h1><u>${student.name}</u></h1>   
+      <h1 style= "text-transform: uppercase"><u>${student.name}</u></h1>   
       <p>Email: ${student.email}</p>
       <p>WhatsApp: ${student.whatsappNumber}</p>
       <p>Alternate Number: ${student.altMobileNumber}</p>

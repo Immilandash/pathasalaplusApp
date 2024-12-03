@@ -10,8 +10,14 @@ async function loadSetupData() {
 
     logo.innerHTML = `<img src="http://localhost:5000/uploads/${data.logo}" alt="Slider Image">
 `
+    // Update Slider
+    const slider = document.getElementById('slider');
+    slider.innerHTML = data.sliders.map(img => `
+      <img src="http://localhost:5000/uploads/${img}" alt="Slider Image">
+    `).join('');
+    initializeSlider();
     // Update Brand Name
-    document.getElementById('brand-name').innerText = "Welcome to: " + data.brandName;
+    document.getElementById('brand-name').innerText = "Warm Regards: " + data.brandName;
 
     // Update About Us section
     document.getElementById('about-content').innerText = data.aboutUs;
@@ -21,12 +27,6 @@ async function loadSetupData() {
     document.getElementById('instagram-link').href = data.socialMedia.instagram;
     document.getElementById('youtube-link').href = data.socialMedia.youtube;
 
-    // Update Slider
-    const slider = document.getElementById('slider');
-    slider.innerHTML = data.sliders.map(img => `
-      <img src="http://localhost:5000/uploads/${img}" alt="Slider Image">
-    `).join('');
-    initializeSlider();
   } catch (error) {
     console.error('Error loading setup data:', error);
   }
