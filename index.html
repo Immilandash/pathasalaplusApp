@@ -7,6 +7,10 @@
   <link rel="stylesheet" href="css/index.css">
 </head>
 <body>
+  <div class="bubbles-container">
+    <!-- The bubbles will be dynamically added here -->
+</div>
+
   <header class="header">
     <div id="brand-logo" class="brand-logo"></div>
     <nav class="navbar">
@@ -69,5 +73,36 @@
   </footer>
 
   <script src="js/index.js"></script>
+  <script>
+    function createBubbles() {
+    const container = document.querySelector('.bubbles-container');
+
+    // Create 30 bubbles dynamically
+    for (let i = 0; i < 30; i++) {
+        const bubble = document.createElement('div');
+        bubble.classList.add('bubble');
+
+        // Randomize size and position
+        const size = Math.random() * 50 + 10; // Bubble size between 10px and 60px
+        bubble.style.width = `${size}px`;
+        bubble.style.height = `${size}px`;
+        bubble.style.left = `${Math.random() * 100}%`;
+
+        // Randomize animation duration and delay
+        bubble.style.animationDuration = `${Math.random() * 5 + 5}s`; // 5-10 seconds
+        bubble.style.animationDelay = `${Math.random() * 5}s`;
+
+        // Randomize bubble color
+        const colors = ['#FF5733', '#33FF57', '#3357FF', '#F0E68C', '#FF1493'];
+        bubble.style.background = colors[Math.floor(Math.random() * colors.length)];
+
+        container.appendChild(bubble);
+    }
+}
+
+// Call the function to create bubbles
+createBubbles();
+
+  </script>
 </body>
 </html>

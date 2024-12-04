@@ -1,4 +1,10 @@
 const loginForm = document.getElementById('admin-login-form');
+const adminBtn = document.querySelector(".adminBtn");
+const studentBtn = document.querySelector(".studentBtn");
+const AloginBox = document.querySelector('.admin-login-box');
+const SloginBox = document.querySelector('.student-login-box');
+
+
 // Admin Registration
 // document.getElementById('admin-register-form').addEventListener('submit', async (e) => {
 //     e.preventDefault();
@@ -14,6 +20,7 @@ const loginForm = document.getElementById('admin-login-form');
 //     alert('Registration request sent!');
 //   });
   
+
 
 
 
@@ -48,25 +55,63 @@ loginForm.addEventListener('submit', async (e) => {
 });
 
 
-const adminBtn = document.querySelector(".adminBtn");
-const studentBtn = document.querySelector(".studentBtn");
-const AloginBox = document.querySelector('.admin-login-box');
-const SloginBox = document.querySelector('.student-login-box');
+
+async function loadSomething(){
+  try {
+    const response = await fetch('http://localhost:5000/api/setup');
+    const data = await response.json();
+    document.documentElement.style.setProperty('--main-color', data.themeColor);
 SloginBox.style.display = "none"
-adminBtn.style.background = "red"
+adminBtn.style.background = data.themeColor
+    adminBtn.addEventListener("click", function(){
+      AloginBox.style.display = "block"
+      SloginBox.style.display = "none"
+      adminBtn.style.background = data.themeColor 
+      studentBtn.style.background = ""
+    })
 
 
-adminBtn.addEventListener("click", function(){
-  AloginBox.style.display = "block"
-  SloginBox.style.display = "none"
-  adminBtn.style.background = "red"
-  studentBtn.style.background = ""
-})
+    studentBtn.addEventListener("click", function(){
+      AloginBox.style.display = "none"
+      SloginBox.style.display = "block"
+      studentBtn.style.background = "grey"
+      adminBtn.style.background = ""
+    })
+    
+  } catch (error) {
+    console.error('Error loading setup data:', error);
+  }
+}
+loadSomething()
 
-studentBtn.addEventListener("click", function(){
-  AloginBox.style.display = "none"
-  SloginBox.style.display = "block"
-  studentBtn.style.background = "grey"
-  adminBtn.style.background = ""
-})
+const bubbleContainer = document.querySelector('.bubbles-container');
+
+// Function to create a bubble
+function createBubble() {
+  const bubble = document.createElement('div');
+  bubble.classList.add('bubble');
+
+  // Randomize size and position
+  const size = Math.random() * 50 + 10; // Between 10px and 60px
+  bubble.style.width = `${size}px`;
+  bubble.style.height = `${size}px`;
+  bubble.style.left = `${Math.random() * 100}%`;
+
+  // Randomize animation duration
+  const duration = Math.random() * 5 + 5; // Between 5s and 10s
+  bubble.style.animationDuration = `${duration}s`;
+
+  bubbleContainer.appendChild(bubble);
+
+  // Remove bubble after animation ends
+  setTimeout(() => bubble.remove(), duration * 1000);
+}
+
+// Generate bubbles continuously
+setInterval(createBubble, 500); // Add a bubble every 500ms
+
+
+
+
+
 

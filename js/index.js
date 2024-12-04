@@ -1,3 +1,47 @@
+function initializeSlider() {
+  const slider = document.getElementById('slider');
+  const slides = slider.querySelectorAll('img');
+  let currentIndex = 0;
+  const slideInterval = 3000; // Time in milliseconds
+  let autoSlide;
+
+  const updateSliderPosition = () => {
+      slider.style.transform = `translateX(-${currentIndex * 100}%)`;
+  };
+
+  const startAutoSlide = () => {
+      autoSlide = setInterval(() => {
+          currentIndex = (currentIndex + 1) % slides.length;
+          updateSliderPosition();
+      }, slideInterval);
+  };
+
+  const stopAutoSlide = () => {
+      clearInterval(autoSlide);
+  };
+
+  // Event listeners for navigation buttons
+  document.getElementById('prev').addEventListener('click', () => {
+      stopAutoSlide();
+      currentIndex = (currentIndex > 0) ? currentIndex - 1 : slides.length - 1;
+      updateSliderPosition();
+      startAutoSlide();
+  });
+
+  document.getElementById('next').addEventListener('click', () => {
+      stopAutoSlide();
+      currentIndex = (currentIndex + 1) % slides.length;
+      updateSliderPosition();
+      startAutoSlide();
+  });
+
+  // Set the initial position and start auto-sliding
+  updateSliderPosition();
+  startAutoSlide();
+}
+
+
+
 async function loadSetupData() {
   try {
     const response = await fetch('http://localhost:5000/api/setup');
@@ -12,9 +56,10 @@ async function loadSetupData() {
 `
     // Update Slider
     const slider = document.getElementById('slider');
-    slider.innerHTML = data.sliders.map(img => `
-      <img src="http://localhost:5000/uploads/${img}" alt="Slider Image">
-    `).join('');
+    slider.innerHTML = data.sliders.map(
+        (img) => `<img src="http://localhost:5000/uploads/${img}" alt="Slider Image">`
+    ).join('');
+
     initializeSlider();
     // Update Brand Name
     document.getElementById('brand-name').innerText = "Warm Regards: " + data.brandName;
@@ -32,20 +77,8 @@ async function loadSetupData() {
   }
 }
 
-function initializeSlider() {
-  const slider = document.getElementById('slider');
-  const slides = slider.querySelectorAll('img');
-  let currentIndex = 0;
 
-  document.getElementById('prev').addEventListener('click', () => {
-    currentIndex = (currentIndex > 0) ? currentIndex - 1 : slides.length - 1;
-    slider.style.transform = `translateX(-${currentIndex * 100}%)`;
-  });
 
-  document.getElementById('next').addEventListener('click', () => {
-    currentIndex = (currentIndex + 1) % slides.length;
-    slider.style.transform = `translateX(-${currentIndex * 100}%)`;
-  });
-}
+
 
 loadSetupData();
